@@ -1,0 +1,81 @@
+@media screen and (max-width: 600px) {
+    .heading-element {
+        font-family: "Yeseva_One";
+        font-size: 4.4rem;
+    }
+    .subtitle-element {
+        font-size: 0.8rem;
+        font-family: 'Josefin_Sans';
+    }
+    .navbar-phone{
+
+    }
+    .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000; /* Ensure it's on top of other elements */
+        background-color: rgba(255, 255, 255, 0.8); /* Optional: Add background for readability */
+    }
+
+    .phone-nav-logo {
+        height: 50px; /* Adjust size as needed */
+        width: auto; /* Keep aspect ratio */
+    }
+
+    .burger {
+        width: 55px;
+        height: 55px;
+        border-radius: 10px;
+        background: white;
+        box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        transition: all 0.5s ease;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .burger.active {
+        background: rgb(56 56 56);
+    }
+
+    .burger-strip {
+        transition: all 0.5s ease;
+    }
+
+    .strip div {
+        height: 3px;
+        border-radius: 2px;
+        background: rgb(56 56 56);
+        margin: 10px;
+        transition: all 0.55s cubic-bezier(0.075, 0.82, 0.165, 1);
+        width: 40px;
+    }
+
+    .burger.active .strip div {
+        background: white;
+    }
+
+    .burger.active .burger-strip-2 div:first-child {
+        transform: translateY(13px) rotate(45deg);
+    }
+
+    .burger.active .burger-strip-2 div:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.active .burger-strip-2 div:last-child {
+        transform: translateY(-13px) rotate(-45deg);
+    }
+
+}

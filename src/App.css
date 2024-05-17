@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: white;
+  font-size: 1.1rem;
+}
+body{
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+}
+/* App.css */
+.MuiListItemButton-root.MuiListItemButton-colorNeutral.MuiListItemButton-variantPlain {
+  color: white;
+}
+/* App.css */
+.MuiChip-label.MuiChip-labelSm {
+  color: red;
+  background: white;
+}
+:root {
+  --color-background: #001C30;
+  --color-Dark1: #176B87;
+  --color-Med1: #64CCC5;
+  --color-Light1: #DAFFFB;
+}
+

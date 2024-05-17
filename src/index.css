@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+  font-weight: 500;
+  color: white;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@font-face {
+  font-family: 'Josefin_Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Yeseva_One';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/YesevaOne-Regular.ttf') format('truetype');
+}
+
+.heading-element {
+  font-family: "Yeseva_One";
+  font-size: 5.4rem;
+}
+.subtitle-element {
+  font-size: 0.8rem;
+  font-family: 'Josefin_Sans';
+}
+.heading-font{
+  font-family: "Yeseva_One";
+}
+.p-font{
+  font-family: 'Josefin_Sans';
+}
+
+.app-container {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.hero_item {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+
+.about-section {
+  padding-top: 2rem; /* Adjust spacing as necessary */
+  margin-top: 2rem; /* Adjust margin as necessary */
+  height: auto;
+}
