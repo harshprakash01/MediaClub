@@ -16,6 +16,7 @@ import Person from '@mui/icons-material/Person';
 import Apps from '@mui/icons-material/Apps';
 import FactCheck from '@mui/icons-material/FactCheck';
 import BookmarkAdd from '@mui/icons-material/BookmarkAdd';
+import {green} from "@mui/material/colors";
 
 const useRovingIndex = (options) => {
   const {
@@ -25,6 +26,7 @@ const useRovingIndex = (options) => {
       onKeyDown: () => {},
     },
   } = options || {};
+
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
   const targetRefs = useRef([]);
   const targets = targetRefs.current;
@@ -265,6 +267,8 @@ const AdmissionsMenu = forwardRef(({ focusNext, focusPrevious, ...props }, ref) 
 });
 
 const ExampleNavigationMenu = () => {
+  const [fill, setFill] = useState("white");
+  const FillColor = "green";
   const { targets, getTargetProps, setActiveIndex, focusNext, focusPrevious } =
       useRovingIndex();
   return (
@@ -278,16 +282,21 @@ const ExampleNavigationMenu = () => {
                 role="menuitem"
                 {...getTargetProps(0)}
                 component="a"
-                href="#navigation-menu"
+                href="/"
+                onMouseEnter={() => setFill(FillColor)}
+                onMouseLeave={() => setFill("white")}
             >
               <ListItemDecorator>
-                <HomeRounded />
+                <HomeRounded
+                    style={{ fill: fill }}
+                />
               </ListItemDecorator>
               Home
             </ListItemButton>
           </ListItem>
           <ListItem role="none">
             <AboutMenu
+
                 onMouseEnter={() => {
                   setActiveIndex(1);
                   targets[1].focus();

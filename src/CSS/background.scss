@@ -1,9 +1,8 @@
 @mixin sp-layout {
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 600px) {
         @content;
     }
 }
-
 
 @function random_range($min, $max) {
     $rand: random();
@@ -12,16 +11,18 @@
 }
 
 .stars {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 120%;
+    height: 80vh; // Adjust to fit the screen height better on phones
     transform: rotate(-45deg);
+    overflow: hidden; // Ensures stars don't overflow the container
 }
 
 .star {
     $star-count: 50;
-    --star-color: var(--primary-color);
+    --star-color: var(--primary-color, #fff);
     --star-tail-length: 6em;
     --star-tail-height: 2px;
     --star-width: calc(var(--star-tail-length) / 6);
@@ -33,7 +34,6 @@
     left: 0;
     width: var(--star-tail-length);
     height: var(--star-tail-height);
-    color: var(--star-color);
     background: linear-gradient(45deg, currentColor, transparent);
     border-radius: 50%;
     filter: drop-shadow(0 0 6px currentColor);
@@ -41,14 +41,16 @@
     animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
 
     @include sp-layout {
-    animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
+        --star-tail-length: 4em; // Shorter tail for smaller screens
+        --fall-duration: 7s; // Faster fall duration for smaller screens
+        animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
     }
 
     @for $i from 1 through $star-count {
         &:nth-child(#{$i}) {
-            --star-tail-length: #{random_range(500em, 750em) / 100};
+            --star-tail-length: #{random_range(400em, 600em) / 100}; // Adjusted range for smaller screens
             --top-offset: #{random_range(0vh, 10000vh) / 100};
-            --fall-duration: #{random_range(6000, 12000s) / 1000};
+            --fall-duration: #{random_range(5000, 10000s) / 1000};
             --fall-delay: #{random_range(0, 10000s) / 1000};
         }
     }
@@ -85,12 +87,10 @@
         width: var(--star-tail-length);
         opacity: 1;
     }
-
     70%, 80% {
         width: 0;
         opacity: 0.4;
     }
-
     100% {
         width: 0;
         opacity: 0;
