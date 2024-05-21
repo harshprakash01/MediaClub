@@ -1,11 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
     margin-top: 30px;
-    background: rgba(17, 1, 40, 0.5); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    background-image: image("/assets/meowbg.png"); /* Semi-transparent background */
+    filter: 'invert(100deg)';
     padding: 20px 0;
     color: #fff;
     text-align: center;
@@ -64,6 +64,7 @@ const ContactTitle = styled.h3`
 
 const ContactInfo = styled.p`
     font-size: 1rem;
+    margin-right: 12px;
 `;
 
 const ContactNumber = styled.p`
@@ -82,9 +83,12 @@ const Footer = () => {
                 </LeftSection>
                 <RightSection>
                     <ContactSection>
-                        <ContactTitle>Contact:</ContactTitle>
-                        <ContactInfo>Udipan Bhatacharayjee <br/>example@example.com</ContactInfo>
-                        <ContactNumber>Phone: +9100000000</ContactNumber>
+                        <ContactInfo>Udipan Bhattacharjee <br/>
+                            <center><a
+                                href={"mailto:mediaclub@nerist.ac.in"}>E-mail </a></center>
+                            <center>+918822078464</center>
+                        </ContactInfo>
+
                     </ContactSection>
                 </RightSection>
             </FooterContent>

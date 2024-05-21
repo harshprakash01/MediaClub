@@ -1,17 +1,23 @@
 @media screen and (max-width: 600px) {
+
     .heading-font{
         font-family: "Yeseva_One";
-        font-size: 4rem;
+        font-size: 4rem !important;
+    }
+    .sub-heading{
+        font-size: 1rem;
     }
     .p-font{
         font-family: 'Josefin_Sans';
-        font-size: 0.8rem;
-
-
+        font-size: 1.2rem !important;
+        margin-top: 2rem;
+        margin-left: 1rem!important;
+        margin-right: 1rem!important;
+        font-family: 'Josefin_Sans';
     }
     .heading-element {
         font-family: "Yeseva_One";
-        font-size: 4.4rem;
+        font-size: 4.4rem !important;
     }
     .subtitle-element {
         font-size: 0.8rem;
@@ -107,6 +113,9 @@
         padding-top: 2rem; /* Adjust spacing as necessary */
         margin-top: 2rem; /* Adjust margin as necessary */
         height: auto;
+    }
+    .phone-style{
+        height: 200vh;
     }
 
 }

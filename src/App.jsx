@@ -8,6 +8,7 @@ import Work from "./components/Work.jsx";
 import MailingList from "./components/MailingList.jsx";
 import Footer from "./components/Footer.jsx";
 import useDetectScroll from '@smakss/react-scroll-direction';
+import Team from "./components/Team.jsx";
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
 }
@@ -63,43 +64,66 @@ function App() {
                         path="/"
                         element={
                             <>
-                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn" style={{
-                                    backgroundImage: `url("/assets/meow3.png")`,
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: 'center -100px',
-                                    width: `100vw`
-                                }}
+                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
+                                     style={{
+                                         backgroundImage: `url("/assets/meow3.png")`,
+                                         backgroundSize: 'cover',
+                                         backgroundRepeat: 'no-repeat',
+                                         backgroundPosition: 'center -100px',
+                                         width: `100vw`
+                                     }}
                                      id="hero-element">
                                     {isMobile ? <PhoneNavbar/> : <Navbar/>}
                                     <Hero/>
                                 </div>
-                                <div>
+                                {!isMobile && (<div>
                                     <div className='mouse' onClick={(e) => {
                                         e.stopPropagation();
                                         scrollToSection('about');
                                     }} style={{cursor: 'pointer'}}>
                                         <span className='scroll-down'></span>
                                     </div>
-                                </div>
+                                </div>)}
 
-                                <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6">
+
+                                <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6" >
                                     <About/>
                                 </div>
-                                <div className={"aboutMargin"} id="" ref={sectionRefs[1]}>
+                                <div
+                                    className="aboutMargin"
+                                    id=""
+                                    ref={sectionRefs[1]}
+
+                                >
                                     <Work/>
                                 </div>
-                                <div className={"mt-10"} id="joinUS">
-                                    <MailingList />
+                                <div className="" id="joinUS">
+                                    <MailingList/>
                                 </div>
                                 <div className=""
-                                    id="footer"
+                                     id="footer"
                                 >
                                     <Footer/>
                                 </div>
                             </>
                         }
                     />
+                    <Route
+                        path="/team"
+                        element={<>
+                            <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
+                                 id="hero-element">
+                                {isMobile ? <PhoneNavbar/> : <Navbar/>}
+                            </div>
+                            <div className="mt-20 team">
+                                <Team/>
+                            </div>
+                            <div className=""
+                                 id="footer"
+                            >
+                                <Footer/>
+                            </div>
+                        </>}/>
                 </Routes>
             </BrowserRouter>
         </div>

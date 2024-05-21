@@ -1,104 +1,163 @@
-//@mixin sp-layout {
-//    @media screen and (max-width: 600px) {
-//        @content;
-//    }
-//}
-//
-//@function random_range($min, $max) {
-//    $rand: random();
-//    $random_range: $min + floor($rand * (($max - $min) + 1));
-//    @return $random_range;
-//}
-//
-//.stars {
-//    position: fixed;
-//    top: 0;
-//    left: 0;
-//    width: 100%;
-//    height: 80vh; // Adjust to fit the screen height better on phones
-//    transform: rotate(-45deg);
-//    overflow: hidden; // Ensures stars don't overflow the container
-//}
-//
-//.star {
-//    $star-count: 50;
-//    --star-color: var(--primary-color, #fff);
-//    --star-tail-length: 6em;
-//    --star-tail-height: 2px;
-//    --star-width: calc(var(--star-tail-length) / 6);
-//    --fall-duration: 9s;
-//    --tail-fade-duration: var(--fall-duration);
-//
-//    position: absolute;
-//    top: var(--top-offset);
-//    left: 0;
-//    width: var(--star-tail-length);
-//    height: var(--star-tail-height);
-//    background: linear-gradient(45deg, currentColor, transparent);
-//    border-radius: 50%;
-//    filter: drop-shadow(0 0 6px currentColor);
-//    transform: translate3d(104em, 0, 0);
-//    animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
-//
-//    @include sp-layout {
-//        --star-tail-length: 4em; // Shorter tail for smaller screens
-//        --fall-duration: 7s; // Faster fall duration for smaller screens
-//        animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
-//    }
-//
-//    @for $i from 1 through $star-count {
-//        &:nth-child(#{$i}) {
-//            --star-tail-length: #{random_range(400em, 600em) / 100}; // Adjusted range for smaller screens
-//            --top-offset: #{random_range(0vh, 10000vh) / 100};
-//            --fall-duration: #{random_range(5000, 10000s) / 1000};
-//            --fall-delay: #{random_range(0, 10000s) / 1000};
-//        }
-//    }
-//
-//    &::before, &::after {
-//        position: absolute;
-//        content: '';
-//        top: 0;
-//        left: calc(var(--star-width) / -2);
-//        width: var(--star-width);
-//        height: 100%;
-//        background: linear-gradient(45deg, transparent, currentColor, transparent);
-//        border-radius: inherit;
-//        animation: blink 2s linear infinite;
-//    }
-//
-//    &::before {
-//        transform: rotate(45deg);
-//    }
-//
-//    &::after {
-//        transform: rotate(-45deg);
-//    }
-//}
-//
-//@keyframes fall {
-//    to {
-//        transform: translate3d(-30em, 0, 0);
-//    }
-//}
-//
-//@keyframes tail-fade {
-//    0%, 50% {
-//        width: var(--star-tail-length);
-//        opacity: 1;
-//    }
-//    70%, 80% {
-//        width: 0;
-//        opacity: 0.4;
-//    }
-//    100% {
-//        width: 0;
-//        opacity: 0;
-//    }
-//}
-//
-//@keyframes blink {
-//    50% {
-//        opacity: 0.6;
-//    }
-//}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap");
+@mixin mQ($rem) {
+  @media screen and (min-width: $rem) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: top;
+}
+
+section {
+  font-weight: 300;
+  font-style: normal;
+  padding-block: min(20vh, 5rem);
+  text-align: center;
+  width: calc(min(90rem, 90%));
+  margin-inline: auto;
+
+
+  h2,
+  h3 {
+    font-family: "Yeseva_One";
+    letter-spacing: 0.035rem;
+  }
+
+  p {
+    line-height: 1.7;
+    color: white;
+    max-width: 70rem;
+    margin: 0 auto;
+    font-size: clamp(0.9rem, 0.825rem + 0.3vw, 1.2rem);
+  }
+
+  h2 {
+    font-size: clamp(3rem, 2.4286rem + 2.2857vw, 5rem);
+    color: white;
+    text-transform: capitalize;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .cards {
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+    gap: 2rem;
+
+    @include mQ(51rem) {
+      gap: 3.5rem;
+    }
+
+    .card {
+      position: relative;
+      text-align: left;
+
+      .social-icon {
+        background: #111;
+        padding: 1rem 1.75rem;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+
+        i {
+          color: #fff;
+          font-size: 1.4rem;
+        }
+
+        &:hover i {
+          color:  rgba(155, 31, 83, 255);
+        }
+      }
+
+      img {
+        filter: grayscale(100%);
+        transition: 0.5s ease;
+
+        &:hover {
+          filter: grayscale(0%);
+        }
+      }
+
+      .card-content-wrapper {
+        margin-left: auto;
+        max-width: 90%;
+
+        .card-content {
+          display: block;
+          background: white;
+          transition: 0.5s ease;
+          padding: 4.5rem 2rem 0 3.2rem;
+
+          > div {
+            text-align: right;
+          }
+
+          h3,
+          p {
+            text-transform: capitalize;
+          }
+
+          h3 {
+            font-size: clamp(1.15rem, 1.1071rem + 0.1714vw, 1.3rem);
+            font-weight: 800;
+            color: #111;
+          }
+          p {
+            color: #454545;
+            font-size: 0.9rem;
+          }
+
+          svg {
+            display: inline-block;
+            text-align: right;
+            width: 60px;
+            color: rgba(155, 31, 83, 255);
+          }
+        }
+      }
+
+      /*hover states*/
+      .card-img-wrapper:hover ~ .card-content-wrapper .card-content {
+        background: rgba(155, 31, 83, 255);
+
+        h3,
+        p,
+        svg {
+          color: #fff;
+        }
+      }
+
+      .card-content-wrapper:hover .card-content {
+        background: rgba(155, 31, 83, 255);
+
+        h3,
+        p,
+        svg {
+          color: #fff;
+        }
+      }
+    }
+  }
+}

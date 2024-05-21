@@ -305,7 +305,7 @@ span.scroll-down {
 
 
 .slide-right2 {
-  animation: 2s slide-right2;
+  animation: 1.2s slide-right2;
 }
 @keyframes slide-right2 {
   from {
@@ -319,7 +319,7 @@ span.scroll-down {
 
 
 .slide-right {
-  animation: 2s slide-right;
+  animation: 1.2s slide-right;
 }
 @keyframes slide-right {
   from {
@@ -399,7 +399,3 @@ span.scroll-down {
 .nav-link{
   cursor : pointer
 }
-
-
-
-

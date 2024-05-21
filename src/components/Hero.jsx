@@ -7,6 +7,9 @@ import '../index.css'
 import  '../CSS/CrackingText.css'
 import '../CSS/star.css'
 
+function isPhone() {
+    return window.innerWidth <= 600; // Adjust the threshold as needed
+}
 
 
 const Hero = () => {
@@ -29,7 +32,7 @@ const Hero = () => {
         <>
             <div>
                 {/* Hero content */}
-                <div className="hero-container" style={{
+                <div className="hero-container " style={{
 
                 }}>
                     <div className="text-container ">
@@ -57,7 +60,10 @@ const Hero = () => {
                                 Media Club
                             </h1>
                         </div>
-                        <div className="line slide-right2"></div>
+                        {!isPhone()&&(
+                            <div className="line slide-right2"></div>
+                        )}
+
                         <div className="mt-4 pt-0 sub-heading center subtitle-element slide-up">
                             <TypeAnimation
                                 className="sub-heading text-left"

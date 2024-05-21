@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import {ToastContainer, toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 // Styled component for the Signup section
-const notify = () => toast(" ✅ Submitted Successfully");
 const SignupSection = styled.section`
     margin-top: 3rem;
 `;
@@ -93,9 +93,12 @@ const SubmitButton = styled.button`
         outline: none;
     }
 `;
+const notify = (message) => toast(message);
 
 const MailingList = () => {
-    const handleSubmit = (event) => {
+    const [loading, setLoading] = useState(false);
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const email = event.target.elements.email.value;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -105,23 +108,44 @@ const MailingList = () => {
             return;
         }
 
-        console.log('Submitted email:', email);
-        notify();
+        try {
+            setLoading(true);
+            const response = await axios.get(`https://media-club-backend-six.vercel.app/getEmail?email=${email}`);
+            console.log(response.status)
+            if (response.status === 300) {
+                notify('⚠️ Email already exists!');
+            } else if (response.status === 200) {
+                notify('✅ Submitted Successfully');
+            } else {
+                notify('️⚠️ An error occurred. Please try again later.');
+            }
+        } catch (error) {
+            const statusCode = error.response.status;
+            if (statusCode === 300) {
+                notify('⚠️ Email already exists!');
+            }else{
+                notify('⚠️ An error occurred. Please try again later.');
+            }
+
+        } finally {
+            setLoading(false);
+        }
+
         event.target.reset();
     };
 
     return (
-        <>
-            <h1 className="text-center heading-font">
-                JOIN US
-            </h1>
+        <section>
+            <h1 className="text-center heading-font">JOIN US</h1>
             <SignupSection>
                 <SignupText>
                     Give us your e-mail so we can send you our <b>Notice Mails</b>
                 </SignupText>
                 <SignupForm onSubmit={handleSubmit}>
                     <InputField required id="email" type="email" placeholder="Your e-mail" />
-                    <SubmitButton type="submit">Submit</SubmitButton>
+                    <SubmitButton type="submit" disabled={loading}>
+                        {loading ? 'Submitting...' : 'Submit'}
+                    </SubmitButton>
                 </SignupForm>
             </SignupSection>
             <ToastContainer
@@ -135,10 +159,9 @@ const MailingList = () => {
                 draggable
                 pauseOnHover
                 theme="dark"
-                transition = {Bounce}
+                transition={Bounce}
             />
-        </>
+        </section>
     );
 };
-
 export default MailingList;

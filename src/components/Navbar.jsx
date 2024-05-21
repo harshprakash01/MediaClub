@@ -14,7 +14,6 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    console.log(offset + " ");
 
     const handleClickScroll = (id) => {
         if (window.location.pathname === '/') {
@@ -23,7 +22,7 @@ const Navbar = () => {
                 element.scrollIntoView({ behavior: "smooth" });
             }
         } else {
-            const newPath = `/${id}`; // Construct the new path by appending the id
+            const newPath = `/#${id}`; // Construct the new path by appending the id
             window.history.pushState(null, '', newPath);
         }
     };
