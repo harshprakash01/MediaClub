@@ -9,6 +9,7 @@ import MailingList from "./components/MailingList.jsx";
 import Footer from "./components/Footer.jsx";
 import useDetectScroll from '@smakss/react-scroll-direction';
 import Team from "./components/Team.jsx";
+import SignUpForm from "./components/Form.jsx"
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
 }
@@ -108,6 +109,20 @@ function App() {
                             </>
                         }
                     />
+                    <Route
+                        path="/apply"
+                        element=
+                            {<>
+                                <div style={{position:"relative"} }>
+                                    <Navbar/>
+                                </div>
+
+                                <SignUpForm/>
+                                <Footer />
+                            </>
+
+                    }
+                        />
                     <Route
                         path="/team"
                         element={<>

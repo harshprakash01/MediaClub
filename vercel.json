@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/listen/(.*)", "destination": "/listen" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

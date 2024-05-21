@@ -6,11 +6,11 @@ import '../App.css'; // Import the CSS file
 import '../index.css'
 import  '../CSS/CrackingText.css'
 import '../CSS/star.css'
+import {Link} from "react-router-dom";
 
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
 }
-
 
 const Hero = () => {
 
@@ -83,10 +83,12 @@ const Hero = () => {
                                 repeat={Infinity}
                             />
                         </div>
+                        <Link to={"/apply"}>
                         <button style={{marginTop: 40, marginLeft: 80}}
-                                className="css-button-sliding-to-left--green slide-up ">
-                            GET DETAILS
-                        </button>
+                                className="css-button-sliding-to-left--green slide-up "
+                        >
+                            Join Now
+                        </button></Link>
 
 
                     </div>
