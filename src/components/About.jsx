@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const About = () => {
     return (
@@ -19,6 +20,7 @@ const About = () => {
                     Media Club embodies the spirit of storytelling, collaboration, and expression, weaving together
                     narratives that resonate far beyond the campus walls.
                 </p>
+                <Link to={"/team"}>
                 <button
                     className={"css-button-sliding-to-left--green pt-2 mt-3"}
                     style={{
@@ -31,7 +33,7 @@ const About = () => {
                     }}
                 >
                     OUR TEAM
-                </button>
+                </button></Link>
 
             </div>
         </>
