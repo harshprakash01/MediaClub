@@ -1,12 +1,380 @@
-import * as React from 'react';
-import ExampleNavigationMenu from '../materialUi/navbar.jsx';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'Josefin_Sans';
+  font-style: normal;
+  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Yeseva_One';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/YesevaOne-Regular.ttf') format('truetype');
+}
 
-const Navbar = () => {
-  return (
-    <nav style={{ position: 'fixed', top: 0, left: '50%', transform: 'translateX(-50%)', zIndex: 1000 }}>
-        <ExampleNavigationMenu />
-    </nav>
-  );
-};
+html {
+  scroll-behavior: smooth;
+  font-family: 'Josefin_Sans';
+}
+*{
+  font-family: 'Josefin_Sans';
+}
 
-export default Navbar;
+
+a {
+  color: inherit; /* Use the color inherited from the parent element */
+  text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+  text-decoration: none; /* Remove underline on hover */
+}
+
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+
+
+.heading-element {
+  margin-left: 2rem;
+  text-shadow:
+          0 0 40px rgba(255, 255, 255, 0.7); /* Adjusted opacity */
+  font-family: "Yeseva_One";
+  font-size: 6.4rem;
+}
+.subtitle-element {
+  margin-left: 4.3rem;
+  font-size: 0.8rem;
+  font-family: 'Josefin_Sans';
+}
+.heading-font{
+  margin-top: 2rem;
+  font-size: 6.4rem;
+  font-family: "Yeseva_One";
+}
+.p-font{
+  margin-top: 2rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  font-family: 'Josefin_Sans';
+  font-size: 1.3rem;
+}
+.work-container{
+  margin-top: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero_item {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 80px;
+  box-sizing: border-box;
+}
+
+.about-section {
+  padding-top: 3.2rem; /* Adjust spacing as necessary */
+  margin-top: 2rem; /* Adjust margin as necessary */
+  height: auto;
+}
+.hero-container {
+  margin-top: 8rem;
+  display: flex;
+}
+
+.text-container {
+  flex: 70%; /* 70% of the container width */
+
+}
+
+.image-container {
+  flex: 30%; /* 30% of the container width */
+  display: flex;
+  align-items: flex-start; /* Align items to the start (top) */
+  justify-content: flex-end; /* Align content to the end (right) */
+  margin-right: 3rem;
+}
+
+
+
+  .css-button-sliding-to-left--green {
+    border-radius: 50px;
+    font-family: Josefin_Sans ;
+    min-width: 130px;
+    height: 60px;
+    font-size: large;
+    margin-left: 4.3rem;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid var(--color-text-def);
+    color: var(--color-text-def);
+  }
+  .css-button-sliding-to-left--green:hover {
+    color: #fff;
+  }
+  .css-button-sliding-to-left--green:hover:after {
+    width: 100%;
+  }
+  .css-button-sliding-to-left--green:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    border: white;
+    background: var(--color-text-def);
+  }
+
+
+
+
+@-webkit-keyframes scroll-inner {
+  from {margin-top: 15%;}
+  to {margin-top: 50%;}
+}
+@keyframes scroll-inner {
+  from {margin-top: 15%;}
+  to {margin-top: 50%;}
+}
+@-webkit-keyframes scroll-mouse {
+  from {margin-top: 0;}
+  to {margin-top: 15px;}
+}
+@keyframes scroll-mouse {
+  from {margin-top: 0;}
+  to {margin-top: 15px;}
+}
+
+
+div.mouse-container{
+  position:relative;
+  display:block;
+//border:solid 1px red;
+  height:100px;
+}
+div.mouse{
+  position:relative;
+  margin:0 auto;
+  display:block;
+  width:50px;
+  height:80px;
+  border: solid 2px #fff;
+  border-radius: 25px;
+  -webkit-animation: scroll-mouse 1.5s;
+  animation: scroll-mouse 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+//-webkit-animation-timing-function:ease;
+//animation-timing-function:ease;
+
+  span.scroll-down{
+    display:block;
+    width:10px;
+    height:10px;
+    background:#fff;
+    border-radius:50%;
+    margin:15% auto auto auto;
+
+    -webkit-animation: scroll-inner 1.5s;
+    animation: scroll-inner 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function:ease;
+    animation-timing-function:ease
+
+  }
+}
+/* Navbar.css */
+nav{
+  font-weight: bold;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo{
+  margin-top: 10px;
+  margin-left: 40px;
+  width: 100px ;
+  height: 100px;
+  transition: filter 0.6s ease-in-out;
+
+}
+
+nav ul li{
+  font-weight: 500;
+  display: inline-block;
+  list-style: none;
+  margin: 10px 20px;
+}
+nav ul li a{
+  color: #e0dcdd;
+  text-decoration: none;
+  font-size: 18px;
+  position:relative;
+}
+nav ul li a::after{
+  content: '';
+  width: 0;
+  height: 3px;
+  background: rgba(155,31,83,255);
+  position:  absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+
+nav ul li a:hover::after{
+  width: 100%;
+  color: var(--color-Med1);
+
+}
+
+.container-left ul li {
+  display: inline-block;
+  cursor: pointer;
+  color: white;
+}
+
+.container-left ul li:hover {
+  text-decoration: underline;
+}
+
+
+.container2 {
+  background: rgba(17,1,40,0.5);
+  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+
+}
+
+.slide-right2 {
+  animation: 2s slide-right2;
+}
+@keyframes slide-right2 {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 4.3rem;
+  }
+}
+
+
+
+.slide-right {
+  animation: 2s slide-right;
+}
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 2rem;
+  }
+}
+
+.slide-up {
+  animation: slide-up 2s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+@keyframes slide-up {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.line {
+  border-bottom: 4px solid white; /* Thickness and color of the line */
+  width: 550px; /* Set the length of the line */
+  align-self: flex-start; /* Align the line to the left if it's in a flex container */
+  margin-left: 4.3rem;
+  border-radius: 50px; /* Make the corners rounded */
+
+}
+
+/* CSS code for smooth glow effect on text with transition on hover */
+.text {
+
+  transition: text-shadow 0.6s ease-in-out; /* Transition for smooth effect */
+}
+
+.text:hover {
+  text-shadow:
+          0 0 20px rgba(255, 255, 255, 1), /* Increased opacity for brighter glow */
+          0 0 40px rgba(255, 255, 255, 0.8), /* Adjusted opacity */
+          0 0 60px rgba(255, 255, 255, 0.6), /* Adjusted opacity */
+          0 0 80px rgba(255, 255, 255, 0.4); /* Adjusted opacity */
+}
+
+.work-section{
+  margin-top: 14rem;
+}
+
+.box-glow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.box-glow:hover {
+  box-shadow: 0 0 90px  rgba(155, 31, 83, 1);
+}
+.rounded-iframe {
+  border-radius: 20px; /* Adjust the value to control the roundness */
+  overflow: hidden; /* This ensures that the content stays within the rounded corners */
+  border: none; /* Remove default border */
+}
+.responsive-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 (16/9 = 0.5625) */
+  height: 0;
+  overflow: hidden;
+}
+.responsive-iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

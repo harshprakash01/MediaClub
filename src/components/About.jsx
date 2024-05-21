@@ -8,11 +8,30 @@ const About = () => {
                 <h1 className=" text-center heading-font">
                     About Us
                 </h1>
-                <p className=" p-font text-center">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae imperdiet turpis. Suspendisse sodales ante tellus, quis accumsan tortor vestibulum eu. Aliquam et felis aliquam, tincidunt nulla at, volutpat lacus. Curabitur accumsan elit purus, sed sollicitudin felis vehicula a. Sed fermentum nunc dui, eu tincidunt augue volutpat nec. Donec neque sapien, tempus quis congue ac, vulputate vel neque. Aliquam erat volutpat. Ut in metus consequat, laoreet neque at, fermentum massa. Duis semper vitae ipsum ut aliquet. Nullam vel erat tellus. Ut eu feugiat metus. Curabitur mollis arcu quis ullamcorper malesuada. Quisque a urna est. Phasellus ac euismod nisi, eget pellentesque dolor. Maecenas sapien urna, commodo non porttitor sit amet, consequat ut dolor.
-
-                    Fusce sagittis erat at mauris pellentesque viverra. Etiam vulputate faucibus libero, sit amet maximus nisi sagittis in. Donec a ex malesuada, sodales risus aliquam, rutrum justo. Donec semper sit amet felis in accumsan. Curabitur vitae sollicitudin elit, at luctus libero. Nunc malesuada vulputate pretium. Proin et consectetur nulla, vel euismod ligula. Suspendisse scelerisque scelerisque ipsum ac blandit. Ut at gravida felis.
+                <p className=" p-font text-center mb-4">
+                    The Nerist Media Club stands as a vibrant hub pulsating with creativity and innovation. With a
+                    mission to amplify voices, spark conversations, and foster a sense of community, it serves as a
+                    platform for budding journalists, photographers, graphic designers, and multimedia enthusiasts
+                    alike. Through a tapestry of articles, photo essays, videos, and podcasts, the club captures the
+                    essence of campus life, delves into pertinent issues, and celebrates the diverse talents within the
+                    North-Eastern Regional Institute of Science and Technology (NERIST) community. Whether it's covering
+                    campus events, shedding light on social causes, or spotlighting student achievements, the Nerist
+                    Media Club embodies the spirit of storytelling, collaboration, and expression, weaving together
+                    narratives that resonate far beyond the campus walls.
                 </p>
+                <button
+                    className={"css-button-sliding-to-left--green pt-2 mt-3"}
+                    style={{
+                        width: "200px", // Adjust width as needed
+                        height: "60px", // Adjust height as needed
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        margin: "0 auto" // Centers the button horizontally
+                    }}
+                >
+                    OUR TEAM
+                </button>
 
             </div>
         </>

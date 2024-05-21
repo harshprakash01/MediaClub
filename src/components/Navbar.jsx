@@ -1,22 +1,38 @@
+import React from 'react';
 import logo from '/assets/logo.png'; // Import the logo image
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
+    const handleClickScroll = (id) => {
+        if (window.location.pathname === '/') {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        } else {
+            const newPath = `/${id}`; // Construct the new path by appending the id
+            window.history.pushState(null, '', newPath);
+        }
+    };
     return (
-        <div id="header">
+
+        <div id="header" className="fixed-header">
             <div className="container2">
                 <nav id="header-nav">
-                    <Link to="/"><img src={logo} className="logo text" alt="logo"/></Link>
-                    <ul id="sidemenu text" style={{}}>
-                        <li className="text"> <a><Link to="/">Home</Link></a></li>
+                    <a href="/"><img src={logo} className="logo" alt="logo" /></a>
+                    <ul id="sidemenu">
+                        <li className="text" onClick={() => handleClickScroll("hero-element")}><Link to="/">Home</Link>
+                        </li>
                         <li></li>
-                        <li  className="text"><a href="/#about">About</a></li>
-                        <li  className="text"></li>
-                        <li  className="text"><a><Link to="/team">Team</Link></a></li>
-                        <li className="text"></li>
-                        <li className="text"><a><Link to="/work">Work</Link></a></li>
-                        <li className="text"></li>
-                        <li className="text"><a><Link to="/contact">Contact</Link></a></li>
-                        <li className="text"></li>
+                        <li className="text" onClick={() => handleClickScroll("about")}><Link>About</Link></li>
+                        <li></li>
+                        <li className="text" onClick={() => handleClickScroll("work")}><Link>Work</Link></li>
+                        <li></li>
+                        <li className="text"><Link to="/team">Team</Link></li>
+                        <li></li>
+                        <li className="text"><Link to="/contact">Contact</Link></li>
+                        <li></li>
+
                     </ul>
                 </nav>
             </div>

@@ -1,10 +1,12 @@
-import './CSS/background.scss';
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import "./CSS/Phone.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PhoneNavbar, Navbar, Hero, About } from "./components/index";
-import Work from "./components/Work.jsx"
+import Work from "./components/Work.jsx";
+import MailingList from "./components/MailingList.jsx";
+import Footer from "./components/Footer.jsx";
 
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
@@ -12,7 +14,7 @@ function isPhone() {
 
 function App() {
     const [isMobile, setIsMobile] = useState(isPhone());
-    const sectionRef = useRef(null);
+    const sectionRefs = [useRef(null), useRef(null)];
 
     useEffect(() => {
         const handleResize = () => {
@@ -22,15 +24,35 @@ function App() {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    const scrollToSection = () => {
-        const section = document.getElementById('about'); // Replace 'about' with the id of your target section
+    useEffect(() => {
+        const handleScroll = () => {
+            sectionRefs.forEach((sectionRef, index) => {
+                if (sectionRef.current) {
+                    const rect = sectionRef.current.getBoundingClientRect();
+                    console.log(`Section ${index + 1} rect:`, rect);
+                    if (rect.bottom <= window.innerHeight && rect.bottom > 0) {
+                        const nextSection = sectionRefs[index + 1];
+                        if (nextSection && nextSection.current) {
+                            console.log(`Scrolling to section ${index + 2}`);
+                            nextSection.current.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [sectionRefs]);
+
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
         if (section) {
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
-
-
-
 
     return (
         <div className="app-container">
@@ -40,27 +62,40 @@ function App() {
                         path="/"
                         element={
                             <>
-                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn"  style={{ backgroundImage: `url("/assets/meow3.png")`,
+                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn" style={{
+                                    backgroundImage: `url("/assets/meow3.png")`,
                                     backgroundSize: 'cover',
                                     backgroundRepeat: 'no-repeat',
                                     backgroundPosition: 'center -100px',
                                     width: `100vw`
-                                }}>
+                                }}
+                                     id="hero-element">
                                     {isMobile ? <PhoneNavbar/> : <Navbar/>}
                                     <Hero/>
                                 </div>
                                 <div>
-
-                                    <div className='mouse' onClick={scrollToSection} style={{
-                                        cursor: 'pointer'
-                                    }}>
-                                            <span className='scroll-down'></span>
+                                    <div className='mouse' onClick={(e) => {
+                                        e.stopPropagation();
+                                        scrollToSection('about');
+                                    }} style={{cursor: 'pointer'}}>
+                                        <span className='scroll-down'></span>
                                     </div>
                                 </div>
-                                <div ref={sectionRef} className="about-section">
+
+                                <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6">
                                     <About/>
                                 </div>
-                                <Work />
+                                <div className={"aboutMargin"} id="" ref={sectionRefs[1]}>
+                                    <Work/>
+                                </div>
+                                <div className={"mt-10"} id="joinUS">
+                                    <MailingList />
+                                </div>
+                                <div className=""
+                                    id="footer"
+                                >
+                                    <Footer/>
+                                </div>
                             </>
                         }
                     />

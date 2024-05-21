@@ -21,7 +21,7 @@ body{
   background: white;
 }
 :root {
-  --color-text-def: rgba(155,31,83,255);
+  --color-text-def: rgb(155, 31, 83);
   --color-background: #001C30;
   --color-Dark1: #176B87;
   --color-Med1: #64CCC5;
@@ -38,4 +38,5 @@ body{
     background-position: 0% 50%;
   }
 }
+
 

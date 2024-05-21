@@ -9,7 +9,6 @@
 @font-face {
   font-family: 'Yeseva_One';
   font-style: normal;
-  font-weight: 800;
   src: url('/fonts/YesevaOne-Regular.ttf') format('truetype');
 }
 
@@ -75,7 +74,11 @@ button:focus-visible {
   font-family: 'Josefin_Sans';
   font-size: 1.3rem;
 }
-
+.work-container{
+  margin-top: 2rem;
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
 .app-container {
   height: 100vh;
   display: flex;
@@ -92,7 +95,7 @@ button:focus-visible {
 }
 
 .about-section {
-  padding-top: 2.2rem; /* Adjust spacing as necessary */
+  padding-top: 3.2rem; /* Adjust spacing as necessary */
   margin-top: 2rem; /* Adjust margin as necessary */
   height: auto;
 }
@@ -175,113 +178,131 @@ button:focus-visible {
   to {margin-top: 15px;}
 }
 
-
-div.mouse-container{
-  position:relative;
-  display:block;
-//border:solid 1px red;
-  height:100px;
+div.mouse-container {
+  position: relative;
+  display: block;
+  height: 100px;
 }
-div.mouse{
-  position:relative;
-  margin:0 auto;
-  display:block;
-  width:50px;
-  height:80px;
+
+div.mouse {
+  position: relative;
+  margin: 0 auto;
+  display: block;
+  width: 50px;
+  height: 80px;
   border: solid 2px #fff;
   border-radius: 25px;
-  -webkit-animation: scroll-mouse 1.5s;
-  animation: scroll-mouse 1.5s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-//-webkit-animation-timing-function:ease;
-//animation-timing-function:ease;
-
-  span.scroll-down{
-    display:block;
-    width:10px;
-    height:10px;
-    background:#fff;
-    border-radius:50%;
-    margin:15% auto auto auto;
-
-    -webkit-animation: scroll-inner 1.5s;
-    animation: scroll-inner 1.5s;
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    -webkit-animation-timing-function:ease;
-    animation-timing-function:ease
-
-  }
+  animation: scroll-mouse 1.5s infinite ease;
 }
+
+span.scroll-down {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 15% auto 0; /* Removed redundant 'auto' */
+  animation: scroll-inner 1.5s infinite ease;
+}
+
+@keyframes scroll-mouse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes scroll-inner {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: 15px; }
+}
+
 /* Navbar.css */
-nav{
-  font-weight: bold;
-  font-size: 1.8rem;
+/* Navbar Styles */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(17, 1, 40, 0.5); /* Adjust as needed */
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  padding: 0px 10px; /* Adjust padding as needed */
+  transition: top 0.3s; /* Smooth transition when showing/hiding */
+}
+
+.fixed-header.hidden {
+  top: -100px; /* Adjust as needed */
+}
+
+.fixed-header.visible {
+  top: 0;
+}
+
+.container2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+#header-nav {
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
-.logo{
-  margin-top: 10px;
-  margin-left: 40px;
-  width: 100px ;
-  height: 100px;
-  transition: filter 0.6s ease-in-out;
-
-}
-
-nav ul li{
-  font-weight: 500;
-  display: inline-block;
+#sidemenu {
+  display: flex;
   list-style: none;
-  margin: 10px 20px;
+  margin: 0;
+  padding: 0;
 }
-nav ul li a{
-  color: #e0dcdd;
+
+#sidemenu li {
+  margin: 0 20px; /* Adjust margin between items as needed */
+}
+
+#sidemenu .text a {
   text-decoration: none;
+  color: #e0dcdd; /* Adjust as needed */
   font-size: 18px;
-  position:relative;
+  position: relative;
+  transition: color 0.3s ease;
 }
-nav ul li a::after{
+
+#sidemenu .text a::after {
   content: '';
   width: 0;
   height: 3px;
-  background: rgba(155,31,83,255);
-  position:  absolute;
+  background: rgba(155, 31, 83, 255);
+  position: absolute;
   left: 0;
   bottom: -6px;
-  transition: 0.5s;
+  transition: width 0.5s;
 }
 
-nav ul li a:hover::after{
+#sidemenu .text a:hover::after {
   width: 100%;
-  color: var(--color-Med1);
-
 }
 
-.container-left ul li {
-  display: inline-block;
-  cursor: pointer;
-  color: white;
-}
-
-.container-left ul li:hover {
-  text-decoration: underline;
+.logo {
+  margin-top: 10px;
+  margin-left: 40px;
+  width: 80px;
+  height: 80px;
+  transition: filter 0.6s ease-in-out;
 }
 
 
-.container2 {
-  background: rgba(17,1,40,0.5);
-  box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
 
-}
+
+
+
+
+
 
 .slide-right2 {
   animation: 2s slide-right2;
@@ -342,3 +363,43 @@ nav ul li a:hover::after{
           0 0 60px rgba(255, 255, 255, 0.6), /* Adjusted opacity */
           0 0 80px rgba(255, 255, 255, 0.4); /* Adjusted opacity */
 }
+
+.work-section{
+  margin-top: 14rem;
+}
+
+.box-glow {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.box-glow:hover {
+  box-shadow: 0 0 90px  rgba(155, 31, 83, 1);
+}
+.rounded-iframe {
+  border-radius: 20px; /* Adjust the value to control the roundness */
+  overflow: hidden; /* This ensures that the content stays within the rounded corners */
+  border: none; /* Remove default border */
+}
+.responsive-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 (16/9 = 0.5625) */
+  height: 0;
+  overflow: hidden;
+}
+.responsive-iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.nav-link{
+  cursor : pointer
+}
+
+
+
+
