@@ -14,14 +14,28 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
     max-width: 1024px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 50px; /* Adjusted padding */
+`;
+
+const LeftSection = styled.div`
+    flex: 1; /* Take up remaining space */
+    text-align: left;
+`;
+
+const RightSection = styled.div`
+    flex-shrink: 0; /* Don't allow content to shrink */
+    text-align: right;
 `;
 
 const FooterTitle = styled.h2`
     font-family: Yeseva_One;
     font-size: 1.5rem;
+    margin-top: 1rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
 `;
@@ -33,21 +47,50 @@ const FooterDescription = styled.p`
 const FooterCopy = styled.p`
     font-size: 0.75rem;
     color: #fbf9f9;
+    text-align: center;
 `;
-const Links = styled.a`
-`
+
+const ContactSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`;
+
+const ContactTitle = styled.h3`
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+`;
+
+const ContactInfo = styled.p`
+    font-size: 1rem;
+`;
+
+const ContactNumber = styled.p`
+    font-size: 1rem;
+`;
 
 const Footer = () => {
     return (
         <FooterContainer>
             <FooterContent>
-                <FooterTitle>Nerist Media Club</FooterTitle>
-                <FooterDescription>
-                    Capturing Moments, Crafting Stories.
-                </FooterDescription>
-
-                <FooterCopy>&#169; 2024 Nerist Media Club. All rights reserved</FooterCopy>
+                <LeftSection>
+                    <FooterTitle>Nerist Media Club</FooterTitle>
+                    <FooterDescription>
+                        Capturing Moments, Crafting Stories.
+                    </FooterDescription>
+                </LeftSection>
+                <RightSection>
+                    <ContactSection>
+                        <ContactTitle>Contact:</ContactTitle>
+                        <ContactInfo>Udipan Bhatacharayjee <br/>example@example.com</ContactInfo>
+                        <ContactNumber>Phone: +9100000000</ContactNumber>
+                    </ContactSection>
+                </RightSection>
             </FooterContent>
+            <FooterCopy>&#169; 2024 Nerist Media Club. All rights reserved <br/>
+                Made with ❤️ by harsh
+            </FooterCopy>
         </FooterContainer>
     );
 };

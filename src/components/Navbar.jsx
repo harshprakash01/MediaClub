@@ -1,8 +1,21 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from '/assets/logo.png'; // Import the logo image
 import { Link } from 'react-router-dom';
 
+
 const Navbar = () => {
+    const [offset, setOffset] = useState(0);
+
+    useEffect(() => {
+        const onScroll = () => setOffset(window.scrollY);
+        // clean up code
+        window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    console.log(offset + " ");
+
     const handleClickScroll = (id) => {
         if (window.location.pathname === '/') {
             const element = document.getElementById(id);
@@ -30,7 +43,7 @@ const Navbar = () => {
                         <li></li>
                         <li className="text"><Link to="/team">Team</Link></li>
                         <li></li>
-                        <li className="text"><Link to="/contact">Contact</Link></li>
+                        <li className="text" onClick={() => handleClickScroll("footer")}><Link to="/">Contact</Link></li>
                         <li></li>
 
                     </ul>

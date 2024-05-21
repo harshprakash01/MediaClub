@@ -7,7 +7,7 @@ import { PhoneNavbar, Navbar, Hero, About } from "./components/index";
 import Work from "./components/Work.jsx";
 import MailingList from "./components/MailingList.jsx";
 import Footer from "./components/Footer.jsx";
-
+import useDetectScroll from '@smakss/react-scroll-direction';
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
 }
@@ -53,7 +53,8 @@ function App() {
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
-
+    const scrollDirection = useDetectScroll();
+    console.log(scrollDirection );
     return (
         <div className="app-container">
             <BrowserRouter>
