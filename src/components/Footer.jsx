@@ -83,7 +83,7 @@ const Footer = () => {
                 </LeftSection>
                 <RightSection>
                     <ContactSection>
-                        <ContactInfo>Udipan Bhattacharjee <br/>
+                        <ContactInfo>Uddipan Bhattacharjee <br/>
                             <center><a
                                 href={"mailto:mediaclub@nerist.ac.in"}>E-mail </a></center>
                             <center>+918822078464</center>
