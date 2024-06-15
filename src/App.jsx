@@ -10,6 +10,7 @@ import Footer from "./components/Footer.jsx";
 import useDetectScroll from '@smakss/react-scroll-direction';
 import Team from "./components/Team.jsx";
 import SignUpForm from "./components/Form.jsx"
+import TeamMemberForm from "./components/TeamMemberForm.jsx";
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
 }
@@ -61,6 +62,27 @@ function App() {
         <div className="app-container">
             <BrowserRouter>
                 <Routes>
+                    <Route
+                        path={"/team-member-form"}
+                        element={
+                            <>
+                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
+                                     style={{
+                                         backgroundSize: 'cover',
+                                         backgroundRepeat: 'no-repeat',
+                                         backgroundPosition: 'center -100px',
+                                         width: `100vw`
+                                     }}
+                                     id="hero-element">
+
+                                    <TeamMemberForm/>
+                                </div>
+
+                            </>
+                        }
+                    />
+
+
                     <Route
                         path="/"
                         element={

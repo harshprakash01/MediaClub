@@ -1,170 +1,130 @@
-require('dotenv').config(); 
-const express = require("express");
-const ytdl = require("ytdl-core");
-const cors = require("cors");
-const { fetchSongDetails } = require("./getSongDetails");
-const favicon = require('serve-favicon');
-const path = require('path'); 
+const express = require('express');
+const multer = require('multer');
+const bodyParser = require('body-parser');
+const path = require('path');
+const fs = require('fs');
+const admin = require('firebase-admin');
+const cors = require('cors');
+
 const app = express();
-const PORT = 3000;
-const WebSocket = require('ws');
-const http = require('http');
-const url = require('url');
-const API_KEY = process.env.API_KEY;
-const AuthUrl = "http://localhost:5173";
+const port = process.env.PORT || 3000;
+
+// Middleware setup
 app.use(cors());
-app.use(favicon(path.join(__dirname, 'public', 'images', 'logo.ico')));
-app.get("/playSong", async (req, res) => {
-  try {
-    const songDetails = await fetchSongDetails(req.query.songName);
-    const songData = await fetchSongData(songDetails);
+app.use(bodyParser.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-    // Respond with the song data
-    res.json(songData);
-  } catch (error) {
-    console.error("Error playing song:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+// Firebase Admin SDK initialization
+const serviceAccount = require('./ignored/nerist-media-club-firebase.json');
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://nerist-media-club-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 
-// Function to fetch song data
-async function fetchSongData(songDetails) {
-  const response = await fetch(
-    `https://www.googleapis.com/youtube/v3/search?q=${encodeURIComponent(
-      songDetails.name + songDetails.artists[0].name
-    )}&part=snippet&type=video&maxResults=1&key=${API_KEY}`
-  );
-  const data = await response.json();
+const db = admin.database();
 
-  if (data && data.items && data.items.length > 0) {
-    const videoId = data.items[0].id.videoId;
-    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    const title = songDetails.name;
-    const thumbnail = songDetails.album.images[0].url;
-    const owner = songDetails.artists[0].name;
-
-    const audioFile = await convertToAudio(
-      `https://www.youtube.com/watch?v=${videoId}`
-    );
-
-    return {
-      title,
-      embedUrl,
-      thumbnail,
-      owner,
-      videoId,
-      audioFile,
-    };
-  } else {
-    throw new Error("No video found");
-  }
-}
-
-// Function to convert YouTube video to audio
-async function convertToAudio(youtubeUrl) {
-  const info = await ytdl.getInfo(youtubeUrl);
-  const audioFormat = ytdl.chooseFormat(info.formats, { filter: "audioonly" });
-  return audioFormat.url;
-}
-
-app.get("/", (req, res) => {
-  res.json({ message: "hello there" });
-});
-
-const generateShareUrl = (username) => {
-  console.log("generating link")
-  return `listen?username=${(username)}`;
-};
-app.get("/generateShareUrl", (req, res) => {
-  const { username } = req.query;
-  // Generate a unique share URL for the provided username
-  const shareUrl = generateShareUrl(username);
-  // Send the generated share URL as the response
-  res.json({ shareUrl });
-});
-const wss = new WebSocket.Server({ noServer: true });
-const clients = new Map(); // Store connected clients
-
-// Function to broadcast an object message to clients with the same WebSocket URL
-function broadcastMessage(message, url) {
-    console.log('Broadcasting message:', message, 'to clients with URL:', url);
-
-    // Convert the object to a JSON string
-    const jsonMessage = JSON.stringify(message);
-
-    // Iterate over all clients and send the message to clients with the same URL
-    clients.forEach((client, clientUrl) => {
-        if (clientUrl === url && client.readyState === WebSocket.OPEN) {
-            client.send(jsonMessage);
+// Multer setup for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadPath = path.join(__dirname, 'uploads');
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath, { recursive: true });
         }
-    });
+        cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Load initial teamMembers data from file on server start
+let teamMembers = [];
+const dataFilePath = path.join(__dirname, 'teamMembersData.json');
+
+if (fs.existsSync(dataFilePath)) {
+    const dataFileContent = fs.readFileSync(dataFilePath, 'utf8');
+    try {
+        teamMembers = JSON.parse(dataFileContent);
+    } catch (error) {
+        console.error('Error parsing teamMembers data file:', error);
+    }
+} else {
+    console.log('Data file does not exist. Creating new one.');
+    saveDataToFile(); // Create an empty file initially
 }
 
-// Handle new connections
-wss.on('connection', (ws, req) => {
-    const queryParams = url.parse(req.url, true).query;
-    const username = queryParams.username;
+// Function to save teamMembers data to file
+function saveDataToFile() {
+    fs.writeFileSync(dataFilePath, JSON.stringify(teamMembers, null, 2), 'utf8');
+}
 
-    if (!username) {
-        console.log('Connection rejected: No username provided');
-        ws.close();
-        return;
+// Route to handle image uploads
+app.post('/team/image', upload.single('image'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
     }
 
-    const clientUrl = req.url; // Get the WebSocket URL of the client
+    // Construct the full URL including the backend server address
+    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
 
-    console.log(`${username} connected with URL: ${clientUrl}`);
+    res.json({ imageUrl });
+});
 
-    // Store client in clients map with its WebSocket URL as the key
-    clients.set(clientUrl, ws);
+// Route to handle adding team members
+app.post('/addTeamMember', (req, res) => {
+    const { name, role, imageSrc, altText, link } = req.body;
 
-    // Handle messages from clients
-   // Handle messages from clients
-// Handle messages from clients
-ws.on('message', (message) => {
+    if (!name || !role || !imageSrc || !altText) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    const newTeamMember = {
+        id: teamMembers.length + 1,
+        name,
+        role,
+        imageSrc,
+        altText,
+        link
+    };
+
+    teamMembers.push(newTeamMember);
+    saveDataToFile(); // Save updated data to file
+    res.json({ message: 'Team member added successfully', teamMembers });
+});
+
+// Route to get all team members
+app.get('/getTeamMembers', (req, res) => {
+    res.json({ teamMembers });
+});
+
+// Route to check and add email
+app.get("/getEmail", async (req, res) => {
+    const email = req.query.email;
+    if (!email) {
+        return res.status(400).send("Email is required");
+    }
+
     try {
-        // Convert the Buffer message to a string
-        const messageString = message.toString('utf8');
+        const emailRef = db.ref('emails');
+        const snapshot = await emailRef.orderByValue().equalTo(email).once('value');
 
-        // Parse the JSON message
-        const parsedMessage = JSON.parse(messageString);
-
-       
-
-        // Broadcast the message to clients with the same WebSocket URL
-        broadcastMessage(parsedMessage, clientUrl);
+        if (snapshot.exists()) {
+            return res.status(300).send("Email already exists");
+        } else {
+            await emailRef.push(email);
+            return res.status(200).send("Email added successfully");
+        }
     } catch (error) {
-        console.error('Error parsing message:', error);
+        console.error("Error checking or adding email:", error);
+        return res.status(500).send("Internal Server Error");
     }
-});
-
-
-
-    // Handle client disconnections
-    ws.on('close', () => {
-        console.log(`${username} disconnected with URL: ${clientUrl}`);
-
-        // Remove client from clients map
-        clients.delete(clientUrl);
-    });
-});
-
-// Create HTTP server
-const server = http.createServer();
-
-// Upgrade HTTP server to WebSocket server
-server.on('upgrade', (request, socket, head) => {
-    wss.handleUpgrade(request, socket, head, (ws) => {
-        wss.emit('connection', ws, request);
-    });
-});
-const WSPORT = 8080;
-// Start the HTTP server
-server.listen(WSPORT, () => {
-    console.log(`WebSocket server started on port ${WSPORT}`);
 });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
