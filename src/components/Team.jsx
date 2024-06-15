@@ -1,7 +1,9 @@
-import  { useState, useEffect } from 'react';
-import TeamCard from '../HelperComponents/TeamCard.jsx';
-import '../CSS/background.scss';
-const backend = "https://media-club-backend-six.vercel.app";
+import React, { useState, useEffect } from 'react';
+import TeamCard from '../HelperComponents/TeamCard'; // Assuming this is correctly imported
+import '../CSS/background.scss'; // Assuming this is correctly imported
+
+const backend = "https://media-club-backend-six.vercel.app"; // Update with your Vercel deployment URL
+
 const Team = () => {
     const [teamMembers, setTeamMembers] = useState([]);
 
@@ -14,22 +16,22 @@ const Team = () => {
                 }
                 const data = await response.json();
 
-                // Check if data.teamMembers is an array
-                if (!Array.isArray(data.teamMembers)) {
+                // Check if data is an array (for safety)
+                if (!Array.isArray(data)) {
                     throw new Error('Team members data is not an array');
                 }
 
-                setTeamMembers(data.teamMembers);
+                setTeamMembers(data);
             } catch (error) {
                 console.error('Error fetching team members:', error);
-                // Optionally, handle error state or retry mechanism
+                // Handle error state or retry mechanism
             }
         };
 
         fetchTeamMembers();
     }, []);
 
-    console.log('teamMembers:', teamMembers); // Debugging
+    console.log('teamMembers:', teamMembers); // For debugging purposes
 
     return (
         <section>
