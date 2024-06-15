@@ -519,6 +519,7 @@ span.scroll-down {
 .form-group input[type="text"],
 .form-group input[type="url"],
 .form-group input[type="file"] {
+  color: grey;
   width: calc(100% - 12px); /* Adjust for padding */
   padding: 8px;
   font-size: 16px;
@@ -537,19 +538,7 @@ span.scroll-down {
 }
 
 /* Button styles */
-button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
 
-button[type="submit"]:hover {
-  background-color: #45a049;
-}
 
 /* Error message styles */
 .error-message {

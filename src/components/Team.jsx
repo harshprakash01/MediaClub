@@ -1,7 +1,7 @@
 import  { useState, useEffect } from 'react';
 import TeamCard from '../HelperComponents/TeamCard.jsx';
 import '../CSS/background.scss';
-const backend = "http://localhost:3000";
+const backend = "https://media-club-backend-six.vercel.app/";
 const Team = () => {
     const [teamMembers, setTeamMembers] = useState([]);
 
