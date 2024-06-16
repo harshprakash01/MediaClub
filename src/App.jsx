@@ -11,6 +11,8 @@ import useDetectScroll from '@smakss/react-scroll-direction';
 import Team from "./components/Team.jsx";
 import SignUpForm from "./components/Form.jsx"
 import TeamMemberForm from "./components/TeamMemberForm.jsx";
+import TeamMemberDetails from "./components/TeamMemberDetails.jsx";
+
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
 }
@@ -56,14 +58,16 @@ function App() {
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     };
+
     const scrollDirection = useDetectScroll();
-    console.log(scrollDirection );
+    console.log(scrollDirection);
+
     return (
         <div className="app-container">
             <BrowserRouter>
                 <Routes>
                     <Route
-                        path={"/team-member-form"}
+                        path="/team-member-form"
                         element={
                             <>
                                 <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
@@ -71,17 +75,14 @@ function App() {
                                          backgroundSize: 'cover',
                                          backgroundRepeat: 'no-repeat',
                                          backgroundPosition: 'center -100px',
-                                         width: `100vw`
+                                         width: '100vw'
                                      }}
                                      id="hero-element">
-
-                                    <TeamMemberForm/>
+                                    <TeamMemberForm />
                                 </div>
-
                             </>
                         }
                     />
-
 
                     <Route
                         path="/"
@@ -89,78 +90,86 @@ function App() {
                             <>
                                 <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
                                      style={{
-                                         backgroundImage: `url("/assets/meow3.png")`,
+                                         backgroundImage: 'url("/assets/meow3.png")',
                                          backgroundSize: 'cover',
                                          backgroundRepeat: 'no-repeat',
                                          backgroundPosition: 'center -100px',
-                                         width: `100vw`
+                                         width: '100vw'
                                      }}
                                      id="hero-element">
-                                    {isMobile ? <PhoneNavbar/> : <Navbar/>}
-                                    <Hero/>
+                                    {isMobile ? <PhoneNavbar /> : <Navbar />}
+                                    <Hero />
                                 </div>
-                                {!isMobile && (<div>
-                                    <div className='mouse' onClick={(e) => {
-                                        e.stopPropagation();
-                                        scrollToSection('about');
-                                    }} style={{cursor: 'pointer'}}>
-                                        <span className='scroll-down'></span>
+                                {!isMobile && (
+                                    <div>
+                                        <div className='mouse' onClick={(e) => {
+                                            e.stopPropagation();
+                                            scrollToSection('about');
+                                        }} style={{ cursor: 'pointer' }}>
+                                            <span className='scroll-down'></span>
+                                        </div>
                                     </div>
-                                </div>)}
+                                )}
 
-
-                                <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6" >
-                                    <About/>
+                                <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6">
+                                    <About />
                                 </div>
-                                <div
-                                    className="aboutMargin"
-                                    id=""
-                                    ref={sectionRefs[1]}
-
-                                >
-                                    <Work/>
+                                <div className="aboutMargin" id="" ref={sectionRefs[1]}>
+                                    <Work />
                                 </div>
                                 <div className="" id="joinUS">
-                                    <MailingList/>
+                                    <MailingList />
                                 </div>
-                                <div className=""
-                                     id="footer"
-                                >
-                                    <Footer/>
+                                <div className="" id="footer">
+                                    <Footer />
                                 </div>
                             </>
                         }
                     />
                     <Route
                         path="/apply"
-                        element=
-                            {<>
-                                <div style={{position:"relative"} }>
-                                    <Navbar/>
+                        element={
+                            <>
+                                <div style={{ position: "relative" }}>
+                                    <Navbar />
                                 </div>
-
-                                <SignUpForm/>
+                                <SignUpForm />
                                 <Footer />
                             </>
-
-                    }
-                        />
+                        }
+                    />
                     <Route
                         path="/team"
-                        element={<>
-                            <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
-                                 id="hero-element">
-                                {isMobile ? <PhoneNavbar/> : <Navbar/>}
-                            </div>
-                            <div className="mt-20 team">
-                                <Team/>
-                            </div>
-                            <div className=""
-                                 id="footer"
-                            >
-                                <Footer/>
-                            </div>
-                        </>}/>
+                        element={
+                            <>
+                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style" id="hero-element">
+                                    {isMobile ? <PhoneNavbar /> : <Navbar />}
+                                </div>
+                                <div className="mt-20 team">
+                                    <Team />
+                                </div>
+                                <div className="" id="footer">
+                                    <Footer />
+                                </div>
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/team-member/:id"
+                        element={
+                            <>
+                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style" id="hero-element">
+                                    {isMobile ? <PhoneNavbar /> : <Navbar />}
+                                </div>
+                                <div className="mt-20">
+                                    <TeamMemberDetails />
+                                </div>
+                                <div className="" id="footer">
+                                    <Footer />
+                                </div>
+                            </>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import TeamCard from '../HelperComponents/TeamCard'; // Assuming this is correctly imported
-import '../CSS/background.scss'; // Assuming this is correctly imported
+import TeamCard from '../HelperComponents/TeamCard';
+import '../CSS/background.scss';
 
 const backend = "https://media-club-backend-six.vercel.app"; // Update with your Vercel deployment URL
+// const backend ="http://localhost:3000";
 
 const Team = () => {
     const [teamMembers, setTeamMembers] = useState([]);
@@ -20,6 +21,9 @@ const Team = () => {
                 if (!Array.isArray(data)) {
                     throw new Error('Team members data is not an array');
                 }
+
+                // Sort data array by id
+                data.sort((a, b) => a.id - b.id);
 
                 setTeamMembers(data);
             } catch (error) {
