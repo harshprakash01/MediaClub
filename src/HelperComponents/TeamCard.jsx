@@ -1,12 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 
 const TeamCard = ({ imageSrc, altText, name, role,link }) => {
     return (
         <div className="card">
             <div className="card-img-wrapper">
-                <img src={imageSrc} alt={altText} />
+                <LazyLoadImage src={imageSrc} alt={altText} />
             </div>
             <a href={link} className="social-icon">
                 <FontAwesomeIcon icon={faLinkedinIn} />
