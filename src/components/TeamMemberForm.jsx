@@ -1,6 +1,6 @@
 import  { useState } from 'react';
-// const backend = "https://media-club-backend-six.vercel.app";
-const backend ="http://localhost:3000";
+const backend = "https://media-club-backend-six.vercel.app";
+// const backend ="http://localhost:3000";
 // eslint-disable-next-line react/prop-types
 const TeamMemberForm = ({ onFormSubmit }) => {
     const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ const TeamMemberForm = ({ onFormSubmit }) => {
         const formData = new FormData();
         formData.append('image', imageFile);
 
-        const response = await fetch(`${backend}/team/image`, {
+        const response = await fetch(`${backend}/api/team/image`, {
             method: 'POST',
             body: formData
         });
@@ -54,7 +54,7 @@ const TeamMemberForm = ({ onFormSubmit }) => {
                 imageSrc = await uploadImage();
             }
 
-            const response = await fetch(`${backend}/addTeamMember`, {
+            const response = await fetch(`${backend}/api/addTeamMember`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

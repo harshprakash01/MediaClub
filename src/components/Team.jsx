@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TeamCard from '../HelperComponents/TeamCard';
 import '../CSS/background.scss';
 
-const backend = "https://media-club-backend-six.vercel.app"; // Update with your Vercel deployment URL
-// const backend ="http://localhost:3000";
+const backend = "https://media-club-backend-six.vercel.app/api"; // Update with your Vercel deployment URL
+// const backend ="http://localhost:3000/api";
 
 const Team = () => {
     const [teamMembers, setTeamMembers] = useState([]);
