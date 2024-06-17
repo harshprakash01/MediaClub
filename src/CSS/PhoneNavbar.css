@@ -1,0 +1,113 @@
+.wrap {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Ensure the burger menu is above other content */
+}
+.burger {
+    position: absolute;
+    margin-top: 2rem;
+    margin-right: 20px;
+    top: 0;
+    right: 0;
+    z-index: 1; /* Ensure the burger menu is above other content */
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center; /* Center the icon horizontally */
+    align-items: center; /* Center the icon vertically */
+    transition: all .5s ease;
+}
+
+.burger.active {
+    background: rgb(56 56 56);
+}
+
+.strip div {
+    height: 3px;
+    border-radius: 2px;
+    background: rgb(56 56 56);
+    margin: 10px;
+    transition: all .55s cubic-bezier(0.075, 0.82, 0.165, 1);
+    width: 40px;
+}
+
+.burger.active .strip div {
+    background: white;
+}
+
+.burger.active .strip div:nth-child(1) {
+    transform: translateY(13px) rotate(45deg);
+}
+
+.burger.active .strip div:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active .strip div:nth-child(3) {
+    transform: translateY(-13px) rotate(-45deg);
+}
+
+
+/* Phone nav logo */
+.phone-nav-logo {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 1.2rem;
+    z-index: 1; /* Ensure the logo is above other content */
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh; /* Adjust height based on your design */
+    background-color: #333; /* Background color of the menu */
+    z-index: 9998; /* Ensure the menu is below the burger menu but above other content */
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-100%); /* Slide down animation effect */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    padding-top: 80px; /* Space for the logo or any other header elements */
+}
+
+.menu.active {
+    opacity: 1; /* Show menu */
+    transform: translateY(0); /* Slide down animation effect */
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Display items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically */
+    height: 100%;
+}
+
+.menu li {
+    margin-bottom: 50px; /* Spacing between menu items */
+    font-size: 18px; /* Adjust font size */
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding around text */
+    transition: color 0.3s ease; /* Smooth color transition */
+    font-size: 35px !important;
+}
+
+.menu li a:hover {
+    color: #bf34a9; /* Hover color */
+}
