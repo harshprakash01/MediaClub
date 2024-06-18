@@ -34,11 +34,9 @@ function App() {
             sectionRefs.forEach((sectionRef, index) => {
                 if (sectionRef.current) {
                     const rect = sectionRef.current.getBoundingClientRect();
-                    console.log(`Section ${index + 1} rect:`, rect);
                     if (rect.bottom <= window.innerHeight && rect.bottom > 0) {
                         const nextSection = sectionRefs[index + 1];
                         if (nextSection && nextSection.current) {
-                            console.log(`Scrolling to section ${index + 2}`);
                             nextSection.current.scrollIntoView({ behavior: 'smooth' });
                         }
                     }
@@ -60,7 +58,6 @@ function App() {
     };
 
     const scrollDirection = useDetectScroll();
-    console.log(scrollDirection);
 
     return (
         <div className="app-container">
@@ -131,7 +128,7 @@ function App() {
                         element={
                             <>
                                 <div style={{ position: "relative" }}>
-                                    <Navbar />
+                                    {isMobile ? <PhoneNavbar /> : <Navbar />}
                                 </div>
                                 <SignUpForm />
                                 <Footer />
