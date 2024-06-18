@@ -1,5 +1,3 @@
-/* TeamMemberDetails.css */
-
 /* Profile container */
 .profile {
     color: #0B001A;
@@ -7,22 +5,27 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    max-height: 750px;
     max-width: 900px;
+    width: 100%;
+    padding: 20px;
     animation: loadProfile 0.6s ease-in-out;
     animation-fill-mode: both;
+    margin: 0 auto; /* Center the profile on the page */
+    overflow: hidden; /* Ensure any overflow content is contained */
 }
 
 /* Profile background */
 .profile-bg {
-    position: absolute;
-    bottom: 0;
-    right: 0;
     border-radius: 10px;
     background: white;
     box-shadow: 0 30px 50px -20px rgba(14, 0, 47, 0.21);
-    width: calc(100% - 75px);
-    height: calc(100% - 110px);
+    width: 100%;
+    height: auto; /* Allow height to adjust based on content */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0; /* Make the background cover the entire profile */
+    left: 0;
     z-index: -1;
 }
 
@@ -32,122 +35,92 @@
     flex-direction: row;
     align-items: stretch;
     width: 100%;
+    position: relative;
+    z-index: 1; /* Ensure it is above the background */
 }
 
 /* Profile image */
 .profile-image {
     animation: loadProfileImage 1s ease-in-out 0.5s;
     animation-fill-mode: both;
-    position: relative;
     border-radius: 10px;
     width: 45%;
     flex: none;
     background-size: cover;
     background-position: center;
-}
-
-.profile-image::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    opacity: 0.8;
-    mix-blend-mode: screen;
-}
-
-.camera {
-    position: absolute;
-    bottom: 28px;
-    left: 28px;
-    font-size: 1.3rem;
+    margin-right: 20px; /* Add some space between image and info */
+    min-height: 300px; /* Ensure a minimum height */
 }
 
 /* Profile information */
 .profile-info {
-    margin-top: 120px;
-    padding: 8% 8% 2% 8%;
-    position: relative;
+    flex: 1; /* Allow this section to grow and fill available space */
+    margin-top: 20px;
+    padding: 8%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
 }
 
 .profile-info h1 {
-    font-size: 3rem;
+    font-size: 2rem; /* Adjusted for better responsiveness */
     font-weight: 800;
-    margin: 0.7rem;
-    position: absolute;
-    animation-fill-mode: both;
-}
-
-h1.first-name {
+    margin: 1rem 0;
     color: rgb(155, 31, 83);
-    animation: titleEffect 1s cubic-bezier(0, 0.2, 0.4, 1);
-    top: -75px;
-}
-
-h1.second-name {
-    color: rgb(155, 31, 83);
-    animation: titleEffect 1s cubic-bezier(0, 0, 0.3, 1);
-    top: -20px;
 }
 
 .profile-info h2 {
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.2rem;
-    margin-top: 0;
-    margin-bottom: 5%;
-}
-
-.social-media-icons a,
-.profile-info h2 {
+    margin: 1rem 0;
     color: #f63d47;
 }
 
 .profile-info p {
     line-height: 1.5rem;
+    margin: 1rem 0;
+    color: #333;
 }
 
 .social-media-icons {
     display: flex;
+    margin-top: 1rem;
 }
 
 .social-media-icons a {
-    margin-top: 7%;
     font-size: 1.2rem;
     flex: auto;
     text-align: center;
+    margin-right: 10px; /* Add some space between icons */
+    color: #f63d47;
+    transition: text-shadow 0.3s ease;
 }
 
-.camera,
-.social-media-icons a {
-    transition: text-shadow 0.5s ease;
-}
-
-.camera:hover,
 .social-media-icons a:hover {
     text-shadow: 0px 5px 15px rgba(255, 0, 47, 0.45);
 }
 
 /* Statistics section */
 .statistics {
-    margin-right: 10px;
-    margin-left: 10px;
-    line-height: 2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-around;
 }
 
 .statistics p {
-    margin: 3%;
-    flex: auto;
+    margin: 0 5px;
     color: #f63d47;
+    font-size: 1rem;
 }
 
 .statistics p strong {
     font-size: 1.4rem;
     color: #000;
-    font-weight: 200;
+    font-weight: 600;
     margin-right: 0.3rem;
 }
 
@@ -156,9 +129,9 @@ h1.second-name {
     background: transparent no-repeat center;
     background-size: contain;
     background-origin: content-box;
-    width: 60px;
-    height: 60px;
-    padding: 15px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
     border: none;
     transition: transform 0.5s ease;
 }
@@ -168,7 +141,6 @@ h1.second-name {
 }
 
 .arrow {
-    flex: 0 1 75px;
     background-image: url("https://zephyo.github.io/22Days/code/3/graphics/arrow.svg");
 }
 
@@ -176,14 +148,10 @@ h1.second-name {
     transform: rotate(180deg);
 }
 
-.right:hover {
-    transform: scale(0.9) rotate(180deg);
-}
-
 .close {
     background-image: url("https://zephyo.github.io/22Days/code/3/graphics/close.svg");
     position: absolute;
-    top: 5px;
+    top: 10px;
     right: 10px;
 }
 
@@ -191,36 +159,35 @@ h1.second-name {
 @media only screen and (max-aspect-ratio: 4/7) and (max-width: 600px) {
     .profile {
         margin: 3%;
-        height: 97%;
+        width: 100%;
+        height: auto; /* Allow height to adjust based on content */
     }
 
     .container {
-        height: 86%;
         flex-direction: column;
+        align-items: center;
+        margin: 0;
     }
 
     .profile-image {
-        height: 40%;
-        width: calc(100% - 90px);
+        width: 80%;
+        margin-bottom: 20px;
+        height: auto;
     }
 
-    .profile-bg {
+    .profile-info {
+        padding: 5%;
+        margin: 0;
+    }
+
+    .statistics {
+        flex-direction: column;
+        align-items: center;
         width: 100%;
     }
 
-    h1.first-name {
-        left: 10px;
-    }
-
-    h1.second-name {
-        left: 60px;
-    }
-}
-
-@media screen and (min-aspect-ratio: 4/7) {
-    .profile {
-        margin-left: 10%;
-        margin-right: 10%;
+    .statistics p {
+        margin: 5px 0;
     }
 }
 
