@@ -41,9 +41,11 @@ const Team = () => {
         <section>
             <h2 className="heading-font">Our Team</h2>
             <p className="p-font">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi, praesentium veritatis voluptatibus ut
-                consequuntur quas consequatur omnis id rem obcaecati.
+                Discover our talented team, driven by passion and creativity. Each member brings unique skills and
+                dedication to deliver exceptional results. We strive to exceed expectations and create impactful
+                experiences for our clients and community.
             </p>
+
             <div className="cards">
                 {teamMembers.map(member => (
                     <TeamCard

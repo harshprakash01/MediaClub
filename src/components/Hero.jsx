@@ -60,7 +60,7 @@ const Hero = () => {
                                 Media Club
                             </h1>
                         </div>
-                        {!isPhone()&&(
+                        {!isPhone() && (
                             <div className="line slide-right2"></div>
                         )}
 
@@ -68,6 +68,9 @@ const Hero = () => {
                             <TypeAnimation
                                 className="sub-heading text-left"
                                 sequence={[
+                                    () => {
+                                    },  // Initial delay without any action
+                                    1000,      // 1 second delay
                                     'We produce graphics for NERIST',
                                     3000,
                                     'We produce graphics for SHRISTI',
@@ -83,12 +86,15 @@ const Hero = () => {
                                 repeat={Infinity}
                             />
                         </div>
+
+
                         <Link to={"/apply"}>
-                        <button style={{marginTop: 40, marginLeft: 80}}
-                                className="css-button-sliding-to-left--green slide-up "
-                        >
-                            Join Now
-                        </button></Link>
+                            <button style={{marginTop: 40, marginLeft: 80}}
+                                    className="css-button-sliding-to-left--green slide-up "
+                            >
+                                Join Now
+                            </button>
+                        </Link>
 
 
                     </div>

@@ -554,3 +554,38 @@ span.scroll-down {
   margin-top: 5px;
 }
 
+/* Custom CSS if needed */
+@media (max-width: 600px) {
+  .w-full {
+    width: 100% !important;
+  }
+  .responsive-iframe-container {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .bento-grid-item {
+    width: 100%;
+  }
+}
+
+/* custom-styles.css */
+
+@media (max-width: 600px) {
+  .custom-grid-class {
+    width: 100%;
+  }
+
+  .custom-item-class {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .work-section {
+    padding: 0 16px;
+  }
+
+  .heading-font {
+    font-size: 24px;
+  }
+}

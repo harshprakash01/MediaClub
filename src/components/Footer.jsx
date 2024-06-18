@@ -1,74 +1,127 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import styled from 'styled-components';
-
+const isPhone = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /android/i.test(userAgent) || /iPhone|iPod/.test(userAgent);
+}
 const FooterContainer = styled.footer`
     margin-top: 30px;
-    background-image: image("/assets/meowbg.png"); /* Semi-transparent background */
-    filter: 'invert(100deg)';
+    background-size: cover; /* Ensure background image covers the entire container */
     padding: 20px 0;
     color: #fff;
     text-align: center;
-    border-top-left-radius: 40px; /* Rounded top left corner */
-    border-top-right-radius: 40px; /* Rounded top right corner */
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        padding: 20px 15px;
+        border-radius: 0; /* Remove border radius for small screens */
+    }
 `;
 
 const FooterContent = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Align items at the top */
+    align-items: flex-start;
     max-width: 1024px;
     margin: 0 auto;
-    padding: 20px 50px; /* Adjusted padding */
+    padding: 20px 50px;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 15px;
+    }
 `;
 
 const LeftSection = styled.div`
-    flex: 1; /* Take up remaining space */
+    flex: 1;
     text-align: left;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        text-align: center;
+        margin-bottom: 15px;
+    }
 `;
 
 const RightSection = styled.div`
-    flex-shrink: 0; /* Don't allow content to shrink */
+    flex-shrink: 0;
     text-align: right;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        text-align: center;
+    }
 `;
 
 const FooterTitle = styled.h2`
-    font-family: Yeseva_One;
+    font-family: 'Yeseva One';
     font-size: 1.5rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        font-size: 1.2rem;
+    }
 `;
 
 const FooterDescription = styled.p`
     margin-bottom: 1.5rem;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        margin-bottom: 1rem;
+    }
 `;
 
 const FooterCopy = styled.p`
     font-size: 0.75rem;
     color: #fbf9f9;
     text-align: center;
+    padding: 0 15px;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+        padding: 0 10px;
+    }
 `;
 
 const ContactSection = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-`;
 
-const ContactTitle = styled.h3`
-    margin-top: 1rem;
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        align-items: center;
+    }
 `;
 
 const ContactInfo = styled.p`
     font-size: 1rem;
     margin-right: 12px;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        margin-right: 0;
+        font-size: 0.9rem;
+    }
 `;
 
 const ContactNumber = styled.p`
     font-size: 1rem;
+
+    /* Media query for mobile devices */
+    @media (max-width: 768px) {
+        font-size: 0.9rem;
+    }
 `;
 
 const Footer = () => {
@@ -83,17 +136,17 @@ const Footer = () => {
                 </LeftSection>
                 <RightSection>
                     <ContactSection>
-                        <ContactInfo>Uddipan Bhattacharjee <br/>
-                            <center><a
-                                href={"mailto:mediaclub@nerist.ac.in"}>E-mail </a></center>
-                            <center>+918822078464</center>
+                        <ContactInfo>
+                            Uddipan Bhattacharjee <br />
+                            <a href="mailto:mediaclub@nerist.ac.in">mediaclub@nerist.ac.in</a><br />
+                            +91 8822078464
                         </ContactInfo>
-
                     </ContactSection>
                 </RightSection>
             </FooterContent>
-            <FooterCopy>&#169; 2024 Nerist Media Club. All rights reserved <br/>
-                Made with ❤️ by harsh
+            <FooterCopy>&#169;Nerist Media Club 2024.
+                {isPhone()?(<br/>):('')}All rights reserved <br />
+                Made with ❤️ by Harsh
             </FooterCopy>
         </FooterContainer>
     );
