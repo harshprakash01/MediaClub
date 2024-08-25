@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-const backend = "https://media-club-backend-six.vercel.app";
+const backend = "https://backend.neristmedia.club";
 // const backend ="http://localhost:3000";
 // eslint-disable-next-line react/prop-types
 const TeamMemberForm = ({ onFormSubmit }) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import "../CSS/teammemberdetails.css";
-const backend = "https://media-club-backend-six.vercel.app"; // Update with your Vercel deployment URL
+const backend = "https://backend.neristmedia.club"; // Update with your Vercel deployment URL
 // const backend ="http://localhost:3000/";
 
 const TeamMemberDetails = () => {
