@@ -46,7 +46,7 @@ const Event1 = () => {
                     marginRight: '50px'
                 }}
                 className="img-fluid"
-                src={('../../../public/assets/img.png')}
+                src={('../../assets/img.png')}
                 alt="Event"
             />
 
