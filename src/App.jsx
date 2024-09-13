@@ -12,6 +12,7 @@ import Team from "./components/Team.jsx";
 import SignUpForm from "./components/Form.jsx"
 import TeamMemberForm from "./components/TeamMemberForm.jsx";
 import TeamMemberDetails from "./components/TeamMemberDetails.jsx";
+import Event1 from "./components/events/event1.jsx";
 
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
@@ -64,6 +65,19 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route
+                        path={'event'}
+                        element={
+                            <>
+                                {isMobile ? <PhoneNavbar/> : <Navbar/>}
+                                <div className=" mt-40">
+                                    <Event1/>
+                                </div>
+
+
+                            </>
+                        }
+                    />
+                    <Route
                         path="/team-member-form"
                         element={
                             <>
@@ -75,7 +89,7 @@ function App() {
                                          width: '100vw'
                                      }}
                                      id="hero-element">
-                                    <TeamMemberForm />
+                                <TeamMemberForm />
                                 </div>
                             </>
                         }
