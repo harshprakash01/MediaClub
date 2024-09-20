@@ -23,7 +23,7 @@ const PhoneNavbar = () => {
     };
 
     return (
-        <div className="wrap">
+        <div className="wrap phone-headder">
             <a href={"/"}><img src={"/assets/logo.png"} alt="logo" className="phone-nav-logo"/></a>
             <div className={`burger ${isActive ? 'active' : ''}`} onClick={toggleMenu}>
                 <div className="strip burger-strip-2">
@@ -44,7 +44,8 @@ const PhoneNavbar = () => {
                     <li className="text" onClick={() => handleClickScroll("hero-element")}><Link to="/">Home</Link></li>
                     <li className="text" onClick={() => handleClickScroll("about")}><Link>About</Link></li>
                     <li className="text" onClick={() => handleClickScroll("work")}><Link>Work</Link></li>
-                    <li className="text" onClick={()=>toggleMenu()}><Link to="/team">Team</Link></li>
+                    <li className="text" onClick={() => toggleMenu()}><Link to="/team">Team</Link></li>
+                    <li className="text"><Link to="/event">Event</Link></li>
                     <li className="text" onClick={() => handleClickScroll("footer")}><Link to="/">Contact</Link></li>
 
                 </ul>

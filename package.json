@@ -39,6 +39,8 @@
     "react-scroll": "^1.9.0",
     "react-toastify": "^10.0.5",
     "react-type-animation": "^3.2.0",
+    "reactjs-popup": "^2.0.6",
+    "read-more-react": "^1.0.10",
     "styled-components": "^6.1.11",
     "tailwind-merge": "^2.3.0"
   },

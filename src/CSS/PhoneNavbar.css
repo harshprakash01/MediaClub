@@ -1,18 +1,7 @@
-.wrap {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999; /* Ensure the burger menu is above other content */
-}
 .burger {
     position: absolute;
-    margin-top: 2rem;
-    margin-right: 20px;
-    top: 0;
-    right: 0;
-    z-index: 1; /* Ensure the burger menu is above other content */
+    top: 2rem;
+    right: 20px;
     width: 55px;
     height: 55px;
     border-radius: 10px;
@@ -22,7 +11,8 @@
     display: flex;
     justify-content: center; /* Center the icon horizontally */
     align-items: center; /* Center the icon vertically */
-    transition: all .5s ease;
+    transition: all 0.5s ease;
+    z-index: 1000; /* Ensure the burger menu is above other content */
 }
 
 .burger.active {
@@ -34,7 +24,7 @@
     border-radius: 2px;
     background: rgb(56 56 56);
     margin: 10px;
-    transition: all .55s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.55s cubic-bezier(0.075, 0.82, 0.165, 1);
     width: 40px;
 }
 
@@ -54,17 +44,17 @@
     transform: translateY(-13px) rotate(-45deg);
 }
 
-
 /* Phone nav logo */
 .phone-nav-logo {
     height: 100px;
     width: 100px;
     position: absolute;
-    margin-top: 1rem;
-    margin-left: 1.2rem;
-    z-index: 1; /* Ensure the logo is above other content */
+    top: 1rem;
+    left: 1.2rem;
+    z-index: 1000; /* Ensure the logo is above other content */
 }
 
+/* Menu styles */
 .menu {
     position: fixed;
     top: 0;
@@ -72,7 +62,7 @@
     width: 100%;
     height: 100vh; /* Adjust height based on your design */
     background-color: #333; /* Background color of the menu */
-    z-index: 9998; /* Ensure the menu is below the burger menu but above other content */
+    z-index: 999; /* Ensure the menu is below the burger menu but above other content */
     opacity: 0; /* Initially hidden */
     transform: translateY(-100%); /* Slide down animation effect */
     transition: opacity 0.3s ease, transform 0.3s ease;

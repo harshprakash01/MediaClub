@@ -13,9 +13,9 @@ import SignUpForm from "./components/Form.jsx"
 import TeamMemberForm from "./components/TeamMemberForm.jsx";
 import TeamMemberDetails from "./components/TeamMemberDetails.jsx";
 import Event1 from "./components/events/event1.jsx";
-
+import EventPhone from "./components/events/event-phone.jsx";
 function isPhone() {
-    return window.innerWidth <= 600; // Adjust the threshold as needed
+    return window.innerWidth <= 900; // Adjust the threshold as needed
 }
 
 function App() {
@@ -70,7 +70,7 @@ function App() {
                             <>
                                 {isMobile ? <PhoneNavbar/> : <Navbar/>}
                                 <div className=" mt-40">
-                                    <Event1/>
+                                    {isPhone() ?  <EventPhone/> : <Event1/>}
                                 </div>
 
 

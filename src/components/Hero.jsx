@@ -1,12 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect,useRef } from 'react';
-import { TypeAnimation } from 'react-type-animation';
+import React, {useState, useEffect, useRef} from 'react';
+import {TypeAnimation} from 'react-type-animation';
 
 import '../App.css'; // Import the CSS file
 import '../index.css'
-import  '../CSS/CrackingText.css'
+import '../CSS/CrackingText.css'
 import '../CSS/star.css'
 import {Link} from "react-router-dom";
+import Popup from "reactjs-popup";
 
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed
@@ -16,7 +17,7 @@ const Hero = () => {
 
     const [colorIndex, setColorIndex] = useState(0);
 
-    const colors = [ 'white']; // Array of colors
+    const colors = ['white']; // Array of colors
 
     // Function to toggle color index
     const toggleColor = () => {
@@ -32,9 +33,7 @@ const Hero = () => {
         <>
             <div>
                 {/* Hero content */}
-                <div className="hero-container " style={{
-
-                }}>
+                <div className="hero-container " style={{}}>
                     <div className="text-container ">
                         <div className="sub-heading center subtitle-element text-xl slide-right2">
                             Capturing Moments, Crafting Stories.
@@ -92,7 +91,7 @@ const Hero = () => {
                             <button style={{marginTop: 40, marginLeft: 80}}
                                     className="css-button-sliding-to-left--green slide-up "
                             >
-                                Join Now
+                                Join Us
                             </button>
                         </Link>
 
@@ -113,5 +112,6 @@ const Hero = () => {
 
     );
 };
+
 
 export default Hero;
