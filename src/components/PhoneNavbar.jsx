@@ -43,7 +43,7 @@ const PhoneNavbar = () => {
                 <ul>
                     <li className="text" onClick={() => handleClickScroll("hero-element")}><Link to="/">Home</Link></li>
                     <li className="text" onClick={() => handleClickScroll("about")}><Link>About</Link></li>
-                    <li className="text" onClick={() => handleClickScroll("work")}><Link>Work</Link></li>
+                    {/*<li className="text" onClick={() => handleClickScroll("work")}><Link>Work</Link></li>*/}
                     <li className="text" onClick={() => toggleMenu()}><Link to="/team">Team</Link></li>
                     <li className="text"><Link to="/event">Event</Link></li>
                     <li className="text" onClick={() => handleClickScroll("footer")}><Link to="/">Contact</Link></li>

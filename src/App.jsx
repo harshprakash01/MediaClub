@@ -125,9 +125,9 @@ function App() {
                                 <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6">
                                     <About />
                                 </div>
-                                <div className="aboutMargin" id="" ref={sectionRefs[1]}>
-                                    <Work />
-                                </div>
+                                {/*<div className="aboutMargin" id="" ref={sectionRefs[1]}>*/}
+                                {/*    <Work />*/}
+                                {/*</div>*/}
                                 <div className="" id="joinUS">
                                     <MailingList />
                                 </div>

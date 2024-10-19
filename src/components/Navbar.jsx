@@ -45,8 +45,8 @@ const Navbar = () => {
                         <li></li>
                         <li className="text" onClick={() => handleClickScroll("about")}><Link>About</Link></li>
                         <li></li>
-                        <li className="text" onClick={() => handleClickScroll("work")}><Link>Work</Link></li>
-                        <li></li>
+                        {/*<li className="text" onClick={() => handleClickScroll("work")}><Link>Work</Link></li>*/}
+                        {/*<li></li>*/}
                         <li className="text"><Link to="/team">Team</Link></li>
                         <li></li>
                         <li className="text"><Link to="/event">Event</Link></li>
