@@ -7,7 +7,6 @@ import '../index.css'
 import '../CSS/CrackingText.css'
 import '../CSS/star.css'
 import {Link} from "react-router-dom";
-import Popup from "reactjs-popup";
 
 function isPhone() {
     return window.innerWidth <= 600; // Adjust the threshold as needed

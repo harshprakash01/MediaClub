@@ -99,24 +99,31 @@ function App() {
                         path="/"
                         element={
                             <>
-                                <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
-                                     style={{
-                                         backgroundImage: 'url("/assets/meow3.png")',
-                                         backgroundSize: 'cover',
-                                         backgroundRepeat: 'no-repeat',
-                                         backgroundPosition: 'center -100px',
-                                         width: '100vw'
-                                     }}
-                                     id="hero-element">
+                                <div
+                                    className="bg-hero-pattern bg-cover bg-no-repeat bg-center hero_itemn phone-style"
+                                    style={{
+                                        backgroundImage: !isPhone() ? 'url("/assets/meow3.png")' : 'none',
+                                        backgroundSize: 'cover',
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: 'center -100px',
+                                        width: '100vw',
+                                    }}
+                                    id="hero-element"
+                                >
                                     {isMobile ? <PhoneNavbar /> : <Navbar />}
                                     <Hero />
                                 </div>
+
                                 {!isMobile && (
                                     <div>
-                                        <div className='mouse' onClick={(e) => {
-                                            e.stopPropagation();
-                                            scrollToSection('about');
-                                        }} style={{ cursor: 'pointer' }}>
+                                        <div
+                                            className="mouse"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                scrollToSection('about');
+                                            }}
+                                            style={{ cursor: 'pointer' }}
+                                        >
                                             <span className='scroll-down'></span>
                                         </div>
                                     </div>
@@ -125,18 +132,18 @@ function App() {
                                 <div id="about" ref={sectionRefs[0]} className="about-section mb-6 pb-6">
                                     <About />
                                 </div>
-                                {/*<div className="aboutMargin" id="" ref={sectionRefs[1]}>*/}
-                                {/*    <Work />*/}
-                                {/*</div>*/}
+
                                 <div className="" id="joinUS">
                                     <MailingList />
                                 </div>
+
                                 <div className="" id="footer">
                                     <Footer />
                                 </div>
                             </>
                         }
                     />
+
                     <Route
                         path="/apply"
                         element={
