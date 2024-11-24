@@ -1,3 +1,10 @@
+/* General phone header styles */
+.phone-headder {
+    position: relative;
+    z-index: 9999; /* Ensure navbar is above other content */
+}
+
+/* Burger button */
 .burger {
     position: absolute;
     top: 2rem;
@@ -9,16 +16,17 @@
     box-shadow: rgb(136 165 191 / 48%) 6px 2px 16px 0px, rgb(255 255 255 / 80%) -6px -2px 16px 0px;
     cursor: pointer;
     display: flex;
-    justify-content: center; /* Center the icon horizontally */
-    align-items: center; /* Center the icon vertically */
+    justify-content: center;
+    align-items: center;
     transition: all 0.5s ease;
-    z-index: 1000; /* Ensure the burger menu is above other content */
+    z-index: 1000;
 }
 
 .burger.active {
-    background: rgb(56 56 56);
+    background: rgb(56 56 56); /* Dark background when active */
 }
 
+/* Burger strip (lines) */
 .strip div {
     height: 3px;
     border-radius: 2px;
@@ -44,14 +52,14 @@
     transform: translateY(-13px) rotate(-45deg);
 }
 
-/* Phone nav logo */
+/* Logo styles */
 .phone-nav-logo {
     height: 100px;
     width: 100px;
     position: absolute;
     top: 1rem;
     left: 1.2rem;
-    z-index: 1000; /* Ensure the logo is above other content */
+    z-index: 1000;
 }
 
 /* Menu styles */
@@ -60,44 +68,64 @@
     top: 0;
     right: 0;
     width: 100%;
-    height: 100vh; /* Adjust height based on your design */
-    background-color: #333; /* Background color of the menu */
-    z-index: 999; /* Ensure the menu is below the burger menu but above other content */
-    opacity: 0; /* Initially hidden */
-    transform: translateY(-100%); /* Slide down animation effect */
+    height: 100vh;
+    background-color: #333;
+    z-index: 999; /* Ensure menu is below the burger but above other content */
+    opacity: 0;
+    transform: translateY(-100%);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    padding-top: 80px; /* Space for the logo or any other header elements */
+    padding-top: 80px;
 }
 
 .menu.active {
-    opacity: 1; /* Show menu */
-    transform: translateY(0); /* Slide down animation effect */
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 10100; /* Menu should appear above background blur */
 }
 
+/* Menu items */
 .menu ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column; /* Display items vertically */
-    align-items: center; /* Center items horizontally */
-    justify-content: center; /* Center items vertically */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 100%;
 }
 
 .menu li {
-    margin-bottom: 50px; /* Spacing between menu items */
-    font-size: 18px; /* Adjust font size */
+    margin-bottom: 50px;
+    font-size: 18px;
 }
 
 .menu li a {
     text-decoration: none;
-    color: white; /* Text color */
-    padding: 10px 20px; /* Padding around text */
-    transition: color 0.3s ease; /* Smooth color transition */
+    color: white;
+    padding: 10px 20px;
     font-size: 35px !important;
+    transition: color 0.3s ease;
 }
 
 .menu li a:hover {
-    color: #bf34a9; /* Hover color */
+    color: #bf34a9; /* Hover effect */
+}
+
+/* Active state for the wrap */
+.wrap.active {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px); /* For Safari */
+    transition: backdrop-filter 0.3s ease;
+}
+
+/* Ensure burger icon is clickable above the blur */
+.burger.active {
+    z-index: 10000; /* Ensure burger is above blurred content */
+}
+
+/* Additional adjustments for smoothness */
+.phone-headder,
+.menu {
+    transition: all 0.3s ease;
 }
