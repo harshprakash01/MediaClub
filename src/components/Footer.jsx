@@ -138,7 +138,7 @@ const Footer = () => {
                     <ContactSection>
                         <ContactInfo>
                             Uddipan Bhattacharjee <br />
-                            <a href="mailto:uddipan710@gmail.com">uddipan710@gmail.com</a><br />
+                            <a href="mailto:uddipan710@gmail.com">E-Mail</a><br />
                             +91 8822078464
                         </ContactInfo>
                     </ContactSection>
