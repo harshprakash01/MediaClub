@@ -26,7 +26,7 @@ Follow these steps to run the project locally:
 
 ### 1️⃣ Clone the Repository
 ```sh
- git clone https://github.com/your-repo/nerist-media-club.git
+ git clone https://github.com/harshprakash01/MediaClub.git
  cd nerist-media-club
 ```
 
