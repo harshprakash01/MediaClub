@@ -144,7 +144,7 @@ const Footer = () => {
                     </ContactSection>
                 </RightSection>
             </FooterContent>
-            <FooterCopy>&#169;Nerist Media Club 2024.
+            <FooterCopy>&#169;Nerist Media Club 2025.
                 {isPhone()?(<br/>):('')}All rights reserved <br />
                 Made with ❤️ by Harsh
             </FooterCopy>
